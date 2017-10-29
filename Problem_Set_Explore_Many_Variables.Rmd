@@ -1,5 +1,5 @@
 ---
-title: "Lesson 5: Multivariate Analysis"
+title: "Lesson 8: Explore Many Variables"
 author: "Josh Goldberg"
 date: "October 29, 2017"
 output: github_document
