@@ -10,6 +10,7 @@ library(dplyr)
 library(tidyr)
 library(reshape2)
 library(data.table)
+library(readxl)
 ```
 
 ``` r
@@ -256,4 +257,133 @@ ggplot(aes(x = cut, y = price/carat),
 #       1. the variable(s) you investigated, your observations, and any summary statistics
 #       2. snippets of code that created the plots
 #       3. links to the images of your plots
+
+# Read data
+internetUsers <- fread('internet_usage.csv')
+internetUsersMeta <- fread('internet_usage_meta.csv')
+
+summary(internetUsers)
+```
+
+    ##  Country Name       Country Code       Indicator Name    
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##  Indicator Code         1960               1961          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      1962               1963               1964          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      1965               1966               1967          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      1968               1969               1970          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      1971               1972               1973          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      1974               1975               1976          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      1977               1978               1979          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      1980               1981               1982          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      1983               1984               1985          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      1986               1987               1988          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      1989               1990               1991          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      1992               1993               1994          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      1995               1996               1997          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      1998               1999               2000          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      2001               2002               2003          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      2004               2005               2006          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      2007               2008               2009          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      2010               2011               2012          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      2013               2014               2015          
+    ##  Length:264         Length:264         Length:264        
+    ##  Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character  
+    ##      2016             V62         
+    ##  Length:264         Mode:logical  
+    ##  Class :character   NA's:264      
+    ##  Mode  :character
+
+``` r
+names(internetUsers)
+```
+
+    ##  [1] "Country Name"   "Country Code"   "Indicator Name" "Indicator Code"
+    ##  [5] "1960"           "1961"           "1962"           "1963"          
+    ##  [9] "1964"           "1965"           "1966"           "1967"          
+    ## [13] "1968"           "1969"           "1970"           "1971"          
+    ## [17] "1972"           "1973"           "1974"           "1975"          
+    ## [21] "1976"           "1977"           "1978"           "1979"          
+    ## [25] "1980"           "1981"           "1982"           "1983"          
+    ## [29] "1984"           "1985"           "1986"           "1987"          
+    ## [33] "1988"           "1989"           "1990"           "1991"          
+    ## [37] "1992"           "1993"           "1994"           "1995"          
+    ## [41] "1996"           "1997"           "1998"           "1999"          
+    ## [45] "2000"           "2001"           "2002"           "2003"          
+    ## [49] "2004"           "2005"           "2006"           "2007"          
+    ## [53] "2008"           "2009"           "2010"           "2011"          
+    ## [57] "2012"           "2013"           "2014"           "2015"          
+    ## [61] "2016"           "V62"
+
+``` r
+ncol(internetUsers)
+```
+
+    ## [1] 62
+
+``` r
+internetUsers <- select(internetUsers, -c(3:34, 62))
+internetUsersMeta <- select(internetUsersMeta, -c(5:6))
+internetUsers <- gather(internetUsers, year, internet_usage, 3:29)
+names(internetUsers) <- c('country', 'country_code', 'year', 'internet_usage_%')
+names(internetUsersMeta) <- c('country_code', 'region', 'income_group', 'special_notes%')
+
+internetUsers <- internetUsers %>% 
+  left_join(internetUsersMeta, by = 'country_code')
 ```

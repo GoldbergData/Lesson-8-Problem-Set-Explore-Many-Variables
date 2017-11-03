@@ -240,8 +240,8 @@ ggplot(aes(x = cut, y = price/carat),
 #       3. links to the images of your plots
 
 # Read data
-internetUsers <- fread('API_IT.NET.USER.ZS_DS2_en_csv_v2.csv')
-internetUsersMeta <- fread('Metadata_Country_API_IT.NET.USER.ZS_DS2_en_csv_v2.csv')
+internetUsers <- fread('internet_usage.csv')
+internetUsersMeta <- fread('internet_usage_meta.csv')
 
 summary(internetUsers)
 names(internetUsers)
@@ -256,8 +256,6 @@ names(internetUsersMeta) <- c('country_code', 'region', 'income_group', 'special
 internetUsers <- internetUsers %>% 
   left_join(internetUsersMeta, by = 'country_code')
                                             
-
-
 ```
 
 
